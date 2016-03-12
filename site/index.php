@@ -5,6 +5,7 @@
     <title>Shopsterfied</title>
     <link rel="stylesheet" href="static/css/furtive.css">
     <link rel="stylesheet" href="static/css/font-awesome.css">
+    <link rel="stylesheet" href="static/css/site.css">
 </head>
 <body>
     <div class="bg--off-white py2 measure">
