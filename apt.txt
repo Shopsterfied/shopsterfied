@@ -8,3 +8,4 @@ php-apc
 php5-curl
 curl
 lynx-cur
+phpmyadmin

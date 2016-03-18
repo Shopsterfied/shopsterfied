@@ -14,13 +14,16 @@
         </div>
 
     <form class="px2" action="#" role="form">
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" name="first-name" placeholder="First Name">
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" name="last-name" placeholder="Last Name">
         <label for="user">Username</label>
         <input type="text" id="user" name="user" placeholder="Username">
         <label for="pass">Password</label>
         <input type="password" id="pass" name="pass" placeholder="8 or more characters...">
         <div class="grd-row">
-            <a class="btn--gray grd-row-col-4-6" href="shop.html">Enter</a>
-            <a class="btn--link grd-row-col-2-6" href="register.html">Or Sign up...</a>
+            <a class="btn--gray grd-row-col-4-6" href="shop.html">Submit</a>
         </div>
     </form>
     </div>
