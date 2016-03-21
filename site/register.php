@@ -48,10 +48,6 @@
 		echo "<p>Registration NOT Successful!  Please try again.</p>";
 	  }
 	}
-	else {
-		echo "<p>Form not posted properly</p>";
-		echo "<p>Registration NOT Successful!  Please try again.</p>";
-	}
 	
     
 ?>

@@ -1,10 +1,10 @@
-
 <?php
+
   if (isset($_POST['user']) && isset($_POST['pass'])) {
 	  
-	  $name = $_POST['user'];
+	  $name = $_POST['username'];
 	  $password = $_POST['pass'];
-	  $passhash = md5($password);
+	  $passhash = md5($password . "^YH7uj*IK9ol");
 	  
 	  $dbConnected = mysql_connect("localhost", "shopsterfieduser", "hrnxUuxnT57RnZmZ")
 		  or die('Failed to connect:  '.mysql_error());
@@ -26,6 +26,7 @@
 	  }
 	  
   } 
+
 ?>
 
 <!DOCTYPE html>
@@ -36,8 +37,6 @@
     <link rel="stylesheet" href="static/css/furtive.css">
     <link rel="stylesheet" href="static/css/font-awesome.css">
     <link rel="stylesheet" href="static/css/site.css">
-    <script src="static/js/jquery.js" type="text/javascript"></script>
-    <script src="static/js/signin.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="bg--off-white py2 measure">
@@ -45,19 +44,16 @@
             <h1><i class="fa fa-shopping-bag"></i> Shopsterfied<h1>
         </div>
 
-    <form name="signinform" class="px2" method = "post" action="index.php" role="form">
+    <form class="px2" method = "post" action="index.php" role="form">
         <label for="user">Username</label>
         <input type="text" id="user" name="user" placeholder="Username">
         <label for="pass">Password</label>
         <input type="password" id="pass" name="pass" placeholder="8 or more characters...">
         <div class="grd-row">
             <a class="btn--gray grd-row-col-4-6" id="submit">Enter</a>
-            <a class="btn--link grd-row-col-2-6" href="register.php">Or Sign up...</a>
+            <a class="btn--link grd-row-col-2-6" href="register.html">Or Sign up...</a>
         </div>
     </form>
     </div>
 </body>
 </html>
-
-Status API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help
