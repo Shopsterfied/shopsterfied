@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="static/css/furtive.css">
     <link rel="stylesheet" href="static/css/font-awesome.css">
     <link rel="stylesheet" href="static/css/site.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="static/js/jquery.js" type="text/javascript"></script>
     <script src="static/js/signin.js" type="text/javascript"></script>
 </head>
 <body>
