@@ -19,6 +19,7 @@
 
 	if (isset($_POST["first-name"]) && isset($_POST["last-name"]) && isset($_POST["user"]) && isset($_POST["pass"])){
 	
+	  echo "<p>RUNNING PHP...</p>";
 	  $dbConnected = mysql_connect("localhost", "shopsterfieduser", "hrnxUuxnT57RnZmZ")
 		  or die('Failed to connect:  '.mysql_error());
 		  
