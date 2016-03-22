@@ -2,7 +2,7 @@
 
   if (isset($_POST['user']) && isset($_POST['pass'])) {
 	  
-	  $name = $_POST['username'];
+	  $name = $_POST['user'];
 	  $password = $_POST['pass'];
 	  $passhash = md5($password . "^YH7uj*IK9ol");
 	  
