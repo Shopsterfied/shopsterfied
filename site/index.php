@@ -22,7 +22,7 @@
 		  /* Make sure that code below does not get executed when we redirect. */
 		  exit;
 	  } else {
-		  echo '<h3>Username ' . $name . ' / Password ' . $password . ' Invalid, please try again.</h3>';
+		  echo '<h3>Username ' . $name . ' / Password ' . $passhash . ' Invalid, please try again.</h3>';
 	  }
 	  
   } 
