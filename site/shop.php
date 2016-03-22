@@ -25,6 +25,7 @@
         <label for="budget">Budget</label>
         <input type="text" id="budget" name="budget" placeholder="$100.00">
         <div class="grd-row">
+            <a class="btn--blue grd-row-col-4-6" href="#">Add Item</a>
             <a class="btn--gray grd-row-col-4-6" href="#">Start Shopping</a>
         </div>
     </form>
