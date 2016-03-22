@@ -53,7 +53,7 @@
         <input type="password" id="pass" name="pass" placeholder="8 or more characters...">
         <div class="grd-row">
             <a class="btn--gray grd-row-col-4-6" id="submit">Enter</a>
-            <a class="btn--link grd-row-col-2-6" href="register.html">Or Sign up...</a>
+            <a class="btn--link grd-row-col-2-6" href="register.php">Or Sign up...</a>
         </div>
     </form>
     </div>
