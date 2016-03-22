@@ -17,7 +17,13 @@
 
 <?php
 
-	if (isset($_POST["first-name"]) && isset($_POST["last-name"]) && isset($_POST["user"]) && isset($_POST["pass"])){
+	if (isset($_POST["first-name"])){
+		echo "<p>found first name</>";
+		if (isset($_POST["last-name"])){
+			echo "<p>found last name</>";
+			if (isset($_POST["user"])){
+				echo "<p>found user name</>";
+				if (isset($_POST["pass"])){
 	
 	  echo "<p>RUNNING PHP...</p>";
 	  $dbConnected = mysql_connect("localhost", "shopsterfieduser", "hrnxUuxnT57RnZmZ")
@@ -50,7 +56,7 @@
 	  	echo $msg;
 		echo "<p>Registration NOT Successful!  Please try again.</p>";
 	  }
-	}
+	}}}}
 	
     
 ?>
