@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="static/css/furtive.css">
     <link rel="stylesheet" href="static/css/font-awesome.css">
     <link rel="stylesheet" href="static/css/site.css">
+    <script type="text/javascript" src="static/js/jquery.js"></script>
+    <script type="text/javascript" src="static/js/register.js"></script>
 </head>
 <body>
 
@@ -59,7 +61,7 @@
             <h1><i class="fa fa-shopping-bag"></i> Shopsterfied<h1>
         </div>
 
-    <form class="px2" action="#" role="form">
+    <form id="regform" class="px2" action="register.php" role="form">
         <label for="first-name">First Name</label>
         <input type="text" id="first-name" name="first-name" placeholder="First Name">
         <label for="last-name">Last Name</label>
@@ -69,9 +71,10 @@
         <label for="pass">Password</label>
         <input type="password" id="pass" name="pass" placeholder="8 or more characters...">
         <div class="grd-row">
-            <a class="btn--gray grd-row-col-4-6" href="shop.html">Submit</a>
+            <a id="submitreg" class="btn--gray grd-row-col-4-6">Submit</a>
         </div>
     </form>
     </div>
+    <h3 hidden id="input-msg">Message text</h3>
 </body>
 </html>
