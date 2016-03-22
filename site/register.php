@@ -17,6 +17,7 @@
 
 <?php
 
+echo "<p>begin php</p>";
 	if (isset($_POST["first-name"])){
 		echo "<p>found first name</p>";
 		if (isset($_POST["last-name"])){
