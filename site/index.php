@@ -22,7 +22,7 @@
 		  /* Make sure that code below does not get executed when we redirect. */
 		  exit;
 	  } else {
-		  echo '<h3>Username/Password Invalid, please try again.</h3>';
+		  echo "<h4 class=\"fnt--red\">Username/Password Invalid, please try again.</h4>";
 	  }
 	  
   } 
@@ -48,12 +48,12 @@
 
     <form id="signin" class="px2" method = "post" action="index.php" role="form">
         <label for="user">Username</label>
-        <input type="text" id="user" name="user" placeholder="Username">
+        <input type="text" id="user" name="user" placeholder="Username" tabindex="1">
         <label for="pass">Password</label>
-        <input type="password" id="pass" name="pass" placeholder="8 or more characters...">
+        <input type="password" id="pass" name="pass" placeholder="8 or more characters..." tabindex="2">
         <div class="grd-row">
-            <a class="btn--gray grd-row-col-4-6" id="submit">Enter</a>
-            <a class="btn--link grd-row-col-2-6" href="register.php">Or Sign up...</a>
+            <a class="btn--gray grd-row-col-4-6" id="submit" tabindex="3">Enter</a>
+            <a class="btn--link grd-row-col-2-6" href="register.php" tabindex="4">Or Sign up...</a>
         </div>
     </form>
     </div>
