@@ -14,6 +14,11 @@
         </div>
 
     <form class="px2" action="#" role="form">
+        <label for="list-name">List Name</label>
+        <select id="list-name" name="list-name">
+            <option>List Name</option>
+            <option>Another List</option>
+        </select>
         <label for="item-name">Item Name</label>
         <input type="text" id="item-name" name="item-name" placeholder="Item Name">
         <label for="priority">Priority</label>
