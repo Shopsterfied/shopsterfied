@@ -23,6 +23,7 @@
 		  exit;
 	  } else {
 		  echo '<h3>Username ' . $name . ' / Password ' . $passhash . ' Invalid, please try again.</h3>';
+		  echo '<p>Stored password is:  ' . $arrRecord[0] . '</p>';
 	  }
 	  
   } 
