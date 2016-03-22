@@ -37,6 +37,8 @@
     <link rel="stylesheet" href="static/css/furtive.css">
     <link rel="stylesheet" href="static/css/font-awesome.css">
     <link rel="stylesheet" href="static/css/site.css">
+    <script type="text/javascript" src="static/js/jquery.js"></script>
+    <script type="text/javascript" src="static/js/signin.js"></script>
 </head>
 <body>
     <div class="bg--off-white py2 measure">
