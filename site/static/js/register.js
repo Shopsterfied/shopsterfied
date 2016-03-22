@@ -18,25 +18,25 @@ $(document).ready(function(){
        					$('#regform').submit();
 					}
 					else{
-						msg = "First name must start with a letter, followed by any combination of letters and/or numbers.  Minimum 1 character, maximum 40.";
+						msg = "Password must be from 6 to 10 characters, may contain special characters, and must have at least one lowercase letter, at least one uppercase letter, and at least one number.";
 						$('#input-msg').text(msg);
 						$('#input-msg').show();
 					}
 				}
 				else{
-					msg = "Last name must start with a letter, followed by any combination of letters and/or numbers.  Minimum 1 character, maximum 40.";
+					msg = "User name must start with a letter, followed by any combination of letters and/or numbers.  Minimum 1 character, maximum 40.";
 					$('#input-msg').text(msg);
 					$('#input-msg').show();
 				}
 			}
 			else{
-				msg = "User name must start with a letter, followed by any combination of letters and/or numbers.  Minimum 1 character, maximum 40.";
+				msg = "Last name must start with a letter, followed by any combination of letters and/or numbers.  Minimum 1 character, maximum 40.";
 				$('#input-msg').text(msg);
 				$('#input-msg').show();
 			}
 		}
 		else{
-			msg = "Password must be from 6 to 10 characters, may contain special characters, and must have at least one lowercase letter, at least one uppercase letter, and at least one number.";
+			msg = "First name must start with a letter, followed by any combination of letters and/or numbers.  Minimum 1 character, maximum 40.";
 			$('#input-msg').text(msg);
 			$('#input-msg').show();
 			}
