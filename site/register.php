@@ -69,7 +69,7 @@ echo "<p>begin php</p>";
             <h1><i class="fa fa-shopping-bag"></i> Shopsterfied<h1>
         </div>
 
-    <form id="regform" class="px2" action="register.php" role="form">
+    <form id="regform" class="px2" action="register.php" method="post" role="form">
         <label for="first-name">First Name</label>
         <input type="text" id="first-name" name="first-name" placeholder="First Name">
         <label for="last-name">Last Name</label>
