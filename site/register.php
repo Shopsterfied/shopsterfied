@@ -18,11 +18,11 @@
 <?php
 
 	if (isset($_POST["first-name"])){
-		echo "<p>found first name</>";
+		echo "<p>found first name</p>";
 		if (isset($_POST["last-name"])){
-			echo "<p>found last name</>";
+			echo "<p>found last name</p>";
 			if (isset($_POST["user"])){
-				echo "<p>found user name</>";
+				echo "<p>found user name</p>";
 				if (isset($_POST["pass"])){
 	
 	  echo "<p>RUNNING PHP...</p>";
