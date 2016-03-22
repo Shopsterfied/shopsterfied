@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
     $("#submit").click(function(){
-        $('signin').submit();
+        $('#signin').submit();
     });
 
 });
