@@ -17,7 +17,7 @@
 	  $arrRecord = mysql_fetch_row($dbRecord);
 	  
 	  
-	  if (($passhash == $arrRecord[0]) && ($password != "")) {    
+	  if ($passhash == $arrRecord[0]) {    
 		  header("Location: http://ec2-52-87-179-178.compute-1.amazonaws.com/shop.php"); /* Redirect browser */
 		  /* Make sure that code below does not get executed when we redirect. */
 		  exit;
