@@ -46,7 +46,7 @@
             <h1><i class="fa fa-shopping-bag"></i> Shopsterfied<h1>
         </div>
 
-    <form class="px2" method = "post" action="index.php" role="form">
+    <form id="submit" class="px2" method = "post" action="index.php" role="form">
         <label for="user">Username</label>
         <input type="text" id="user" name="user" placeholder="Username">
         <label for="pass">Password</label>
