@@ -15,10 +15,14 @@
 
     <form class="px2" action="#" role="form">
         <label for="list-name">List Name</label>
-        <select id="list-name" name="list-name">
-            <option>List Name</option>
-            <option>Another List</option>
-        </select>
+        <input list="list-names" id="list-name" name="list-name">
+        <datalist id="list-names">
+            <option value="List1">
+            <option value="List2">
+            <option value="List3">
+            <option value="List4">
+            <option value="List5">
+        </datalist>
         <label for="item-name">Item Name</label>
         <input type="text" id="item-name" name="item-name" placeholder="Item Name">
         <label for="priority">Priority</label>
