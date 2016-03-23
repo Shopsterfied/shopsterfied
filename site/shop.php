@@ -10,17 +10,11 @@
     <script type="text/javascript" src="static/js/shop.js"></script>
     
     <?php
-		print '<script type="text/javascript">'; 
-		print 'alert("php is running")'; 
-		print '</script>'; 
-		if (isset($_POST['item-name'])){
-			
-			print '<script type="text/javascript">'; 
-			print 'alert("detected item-name")'; 
-			print '</script>'; 
-			$btnmsg = $_POST['button'];
+		if (isset($_POST['buttonval'])){
+			$btnmsg = $_POST['buttonval'];
 			$itemname = $_POST['item-name'];
-			echo '<h3>' . $itemname . ' was the item name</h3>';
+			echo '<h3>' . $buttonval . ' was pressed</h3>';
+			echo '<h3>' . $itemname . ' is the item name</h3>';
 		}
 	
     ?>
@@ -52,6 +46,7 @@
             <input type="text" id="quantity" name="quantity" placeholder="e.g. 1" tabindex="5">
             <label for="budget">Budget</label>
             <input type="text" id="budget" name="budget" placeholder="$100.00" tabindex="7">
+            <input type-"hidden" name="buttonval" id="buttonval">
             <div class="grd-row">
                 <a id="additem" class="btn--blue grd-row-col-4-6" href="#" tabindex="6">Add Item</a>
                 <a class="btn--gray grd-row-col-4-6" href="#" tabindex="8">Start Shopping</a>
