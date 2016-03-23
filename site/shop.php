@@ -10,11 +10,18 @@
     <script type="text/javascript" src="static/js/shop.js"></script>
     
     <?php
-	if (isset($_POST['item-name'])){
-		$btnmsg = $_POST['button'];
-		$itemname = $_POST['item-name'];
-		echo '<h3>' . $itemname . ' was the item name</h3>';
-	}
+		print '<script type="text/javascript">'; 
+		print 'alert("php is running")'; 
+		print '</script>'; 
+		if (isset($_POST['item-name'])){
+			
+			print '<script type="text/javascript">'; 
+			print 'alert("detected item-name")'; 
+			print '</script>'; 
+			$btnmsg = $_POST['button'];
+			$itemname = $_POST['item-name'];
+			echo '<h3>' . $itemname . ' was the item name</h3>';
+		}
 	
     ?>
     
