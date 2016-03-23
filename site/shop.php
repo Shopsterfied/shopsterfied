@@ -119,7 +119,7 @@
 		
 			if (isset($_POST['buttonval'])){
 			
-				$query = "SELECT * FROM `Items` WHERE `list` = '$listid'";
+				$query = "SELECT * FROM `Items` WHERE `list` = '$listid' ORDER BY `priority`";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 				
 				$numrows = mysql_num_rows($dbRecord);
