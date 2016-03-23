@@ -74,7 +74,7 @@
 	if (isset($_POST['item-name'])){
 		$btnmsg = $_POST['button'];
 		$itemname = $_POST['item-name'];
-		echo '<h3 id="msg">' . $itemname . ' was the item name</h3>';
+		echo '<h3>' . $itemname . ' was the item name</h3>';
 	}
 	
     ?>
