@@ -11,6 +11,19 @@
     
     <?php
 		$userid = $_COOKIE['username'];
+	  
+	  	$dbConnected = mysql_connect("localhost", "shopsterfieduser", "hrnxUuxnT57RnZmZ")
+		  	or die('Failed to connect:  '.mysql_error());
+		  
+	  	mysql_select_db('shopsterfied', $dbConnected)
+		  	or die('Connected but could not find database: '.mysql_error());
+			
+			
+		$query = "SELECT `id` FROM `Users` WHERE `user_name` = '$userid'";
+	  	$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+	  	$arrRecord = mysql_fetch_row($dbRecord);
+		$ownerid = $arrRecord[0];
+			
 		if (isset($_POST['buttonval'])){
 			
 			$btnmsg = $_POST['buttonval'];
@@ -22,20 +35,7 @@
 			
 			
 			if ($btnmsg == 'addItem') {
-	  
-	  			$dbConnected = mysql_connect("localhost", "shopsterfieduser", "hrnxUuxnT57RnZmZ")
-		  			or die('Failed to connect:  '.mysql_error());
-		  
-	  			mysql_select_db('shopsterfied', $dbConnected)
-		  			or die('Connected but could not find database: '.mysql_error());
 					
-				
-		  
-				$query = "SELECT `id` FROM `Users` WHERE `user_name` = '$userid'";
-	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
-	  			$arrRecord = mysql_fetch_row($dbRecord);
-				$ownerid = $arrRecord[0];
-		  
 				$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 	  			$arrRecord = mysql_fetch_row($dbRecord);
@@ -70,11 +70,18 @@
             <label for="list-name">List Name</label>
             <input list="list-names" id="list-name" name="list-name" tabindex="1">
             <datalist id="list-names">
-                <option value="List1">
-                <option value="List2">
-                <option value="List3">
-                <option value="List4">
-                <option value="List5">
+                
+            <?php
+			
+				$query = "SELECT `name` FROM `Lists` WHERE `owner` = '$ownerid'";
+	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+				while($row = mysql_fetch_assoc($dbRecord)){
+					echo "<option>" . $row['name'] . "</option>";
+				}
+			
+			?>
+                
+                
             </datalist>
             <label for="item-name">Item Name</label>
             <input type="text" id="item-name" name="item-name" placeholder="Item Name" tabindex="2">
@@ -121,8 +128,6 @@
 			
 				$query = "SELECT * FROM `Items` WHERE `list` = '$listid' ORDER BY `priority`";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
-				
-				$numrows = mysql_num_rows($dbRecord);
 			
 				while($row = mysql_fetch_assoc($dbRecord)){
 					echo "<tr class='item'>";
