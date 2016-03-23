@@ -71,9 +71,10 @@
     </div>
     
     <?php
-	if (isset($_POST['button'])){
+	if (isset($_POST['item-name'])){
 		$btnmsg = $_POST['button'];
-		echo '<h3 id="msg">' . $btnmsg . ' button was pressed</h3>';
+		$itemname = $_POST['item-name'];
+		echo '<h3 id="msg">' . $itemname . ' was the item name</h3>';
 	}
 	
     ?>
