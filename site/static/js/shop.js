@@ -16,7 +16,7 @@ $(document).ready(function(){
 	});
 	
 	//$(document).on('input', '#list-names', function() {
-	$('#list-names').change(function(){
+	$('#list-name').change(function(){
 		$('#buttonval').val('listset');
 		$('#shopform').submit();
 		});
