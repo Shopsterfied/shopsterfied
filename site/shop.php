@@ -20,7 +20,7 @@
 			$price = $_POST['price'];
 			$userid = $_COOKIE['username'];
 			
-			echo '<p>userid: ' . $userid . </p>';
+			echo '<p>userid: ' . $userid . '</p>';
 			
 			
 			if ($btnmsg == 'addItem') {
