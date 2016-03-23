@@ -104,18 +104,20 @@
             
         <?php
 		
-			$query = "SELECT * FROM `Items` WHERE `id` = '$listid'";
-	  		$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+			if (isset($_POST['buttonval'])){
 			
-			while($row = mysql_fetch_assoc($dbRecord)){
-				echo "<tr class='item'>";
-				echo "<td>" . $row['priority'] . "</td>";
-				echo "<td>" . $row['item_name'] . "</td>";
-				echo "<td>" . $row['cost'] . "</td>";
-				echo "<td>" . $row['quantity'] . "</td>";
-				echo "</tr>";
+				$query = "SELECT * FROM `Items` WHERE `id` = '$listid'";
+	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+			
+				while($row = mysql_fetch_assoc($dbRecord)){
+					echo "<tr class='item'>";
+					echo "<td>" . $row['priority'] . "</td>";
+					echo "<td>" . $row['item_name'] . "</td>";
+					echo "<td>" . $row['cost'] . "</td>";
+					echo "<td>" . $row['quantity'] . "</td>";
+					echo "</tr>";
+				}
 			}
-				
 			
 		?>
         </tbody>
