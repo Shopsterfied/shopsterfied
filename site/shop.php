@@ -35,15 +35,11 @@
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 	  			$arrRecord = mysql_fetch_row($dbRecord);
 				$ownerid = $arrRecord[0];
-				
-				echo '<h3>owner id = ' . $ownerid . '</h3>';
 		  
 				$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 	  			$arrRecord = mysql_fetch_row($dbRecord);
 				$listid = $arrRecord[0];
-				
-				echo '<h3>list id = ' . $listid . '</h3>';
 				
 				$query = "INSERT INTO Items(`list`, `item_name`, `cost`, `quantity`, `priority`) VALUES ('$listid','$itemname','$price','$quantity','$priority')";
 				mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
@@ -105,7 +101,23 @@
             <col width="10%"/>
         </colgroup>
         <tbody>
-            <tr class="item"></tr>
+            
+        <?php
+		
+			$query = "SELECT * FROM `Items` WHERE `id` = '$listid'";
+	  		$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+			
+			while($row = mysql_fetch_assoc($dbRecord)){
+				echo "<tr class='item'>";
+				echo "<td>" . $row['priority'] . "</td>";
+				echo "<td>" . $row['item_name'] . "</td>";
+				echo "<td>" . $row['cost'] . "</td>";
+				echo "<td>" . $row['quantity'] . "</td>";
+				echo "</tr>";
+			}
+				
+			
+		?>
         </tbody>
     </table>
     </div>
