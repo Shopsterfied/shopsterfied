@@ -18,7 +18,7 @@
 			$quantity = $_POST['quantity'];
 			$priority = $_POST['priority'];
 			$price = $_POST['price'];
-			$userid= $_COOKIE['username'];
+			$userid = $_COOKIE['username'];
 			
 			
 			if ($btnmsg == 'addItem') {
