@@ -20,8 +20,6 @@
 			$price = $_POST['price'];
 			$userid = $_COOKIE['username'];
 			
-			echo '<p>userid: ' . $userid . '</p>';
-			
 			
 			if ($btnmsg == 'addItem') {
 	  
@@ -48,6 +46,8 @@
 
 			}
 		}
+			echo '<p>userid: ' . $userid . '</p>';
+			
     ?>
     
 </head>
