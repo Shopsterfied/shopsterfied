@@ -26,7 +26,7 @@
     </header>
     <div class="bg--off-white py2 px2 measure content">
         <div class"form">
-        <form id="shopform" action="#" role="form">
+        <form id="shopform" action="shop.php" method="post" role="form">
             <label for="list-name">List Name</label>
             <input list="list-names" id="list-name" name="list-name" tabindex="1">
             <datalist id="list-names">
