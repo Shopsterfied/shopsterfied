@@ -11,11 +11,14 @@
     
     <?php
 		if (isset($_POST['buttonval'])){
+			
 			$btnmsg = $_POST['buttonval'];
 			$itemname = $_POST['item-name'];
-			echo '<h3>' . $buttonval . ' was pressed</h3>';
+			echo '<h3>' . $buttonmsg . ' was pressed</h3>';
 			echo '<h3>' . $itemname . ' is the item name</h3>';
+			
 		}
+		
 	
     ?>
     
