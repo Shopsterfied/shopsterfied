@@ -49,7 +49,7 @@
             <input type="text" id="quantity" name="quantity" placeholder="e.g. 1" tabindex="5">
             <label for="budget">Budget</label>
             <input type="text" id="budget" name="budget" placeholder="$100.00" tabindex="7">
-            <input type-"hidden" name="buttonval" id="buttonval">
+            <input type="hidden" name="buttonval" id="buttonval">
             <div class="grd-row">
                 <a id="additem" class="btn--blue grd-row-col-4-6" href="#" tabindex="6">Add Item</a>
                 <a class="btn--gray grd-row-col-4-6" href="#" tabindex="8">Start Shopping</a>
