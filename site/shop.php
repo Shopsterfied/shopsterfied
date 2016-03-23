@@ -69,13 +69,13 @@
         <a class="btn--blue grd-row-col-2-6" href="#">Save List</a>
     </div>
     </div>
-    <!--
-    < 
-	if (isset($_POST['button']){
+    
+    <?php
+	if (isset($_POST['button'])){
 		$btnmsg = $_POST['button'];
 		echo '<h3 id="msg">' . $btnmsg . ' button was pressed</h3>';
 	}
 	
-    -->
+    ?>
 </body>
 </html>
