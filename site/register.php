@@ -51,7 +51,7 @@
 	  }
 	  else {
 	  	echo $msg;
-		echo "<p>Registration NOT Successful!  Please try again.</p>";
+		echo "<p class=\"fnt--red\">Registration NOT Successful!  Please try again.</p>";
 	  }
 	}}}}
 	
@@ -67,18 +67,18 @@
 
     <form id="regform" class="px2" action="register.php" method="post" role="form">
         <label for="first-name">First Name</label>
-        <input type="text" id="first-name" name="first-name" placeholder="First Name">
+        <input type="text" id="first-name" name="first-name" placeholder="First Name" tabindex="1"/>
         <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" name="last-name" placeholder="Last Name">
+        <input type="text" id="last-name" name="last-name" placeholder="Last Name" tabindex="2"/>
         <label for="user">Username</label>
-        <input type="text" id="user" name="user" placeholder="Username">
+        <input type="text" id="user" name="user" placeholder="Username" tabindex="3"/>
         <label for="pass">Password</label>
-        <input type="password" id="pass" name="pass" placeholder="8 or more characters...">
+        <input type="password" id="pass" name="pass" placeholder="8 or more characters..."tabindex="4"/>
         <div class="grd-row">
-            <a id="submitreg" class="btn--gray grd-row-col-4-6">Submit</a>
+            <a id="submitreg" class="btn--gray grd-row-col-4-6" tabindex="5">Submit</a>
+            <h4 hidden id="input-msg" class="txt--center ">Message text</h4>
         </div>
     </form>
     </div>
-    <h3 hidden id="input-msg">Message text</h3>
 </body>
 </html>
