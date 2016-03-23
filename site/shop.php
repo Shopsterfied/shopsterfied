@@ -35,11 +35,15 @@
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 	  			$arrRecord = mysql_fetch_row($dbRecord);
 				$ownerid = $arrRecord[0];
+				
+				echo '<h3>owner id = ' . $ownerid . '</h3>';
 		  
 				$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 	  			$arrRecord = mysql_fetch_row($dbRecord);
 				$listid = $arrRecord[0];
+				
+				echo '<h3>list id = ' . $listid . '</h3>';
 				
 				$query = "INSERT INTO Items(`list`, `item_name`, `cost`, `quantity`, `priority`) VALUES ('$listid','$itemname','$price','$quantity','$priority')";
 				mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
