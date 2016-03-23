@@ -74,5 +74,6 @@
 		$btnmsg = $_POST['button'];
 		echo '<h3 id="msg">' . $btnmsg . ' button was pressed</h3>';
 	}
+	?>
 </body>
 </html>
