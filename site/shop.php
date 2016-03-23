@@ -76,16 +76,16 @@
 					
             		echo '<input list="list-names" id="list-name" name="list-name" tabindex="1" value="' . $listname . '">';
             		echo '<datalist id="list-names">';
-					$query = "SELECT `name` FROM `Lists` WHERE `owner` = '$ownerid'";
-	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
-					while($row = mysql_fetch_assoc($dbRecord)){
-						echo "<option>" . $row['name'] . "</option>";
-					}
 				}
 				else {
 					echo '<input list="list-names" id="list-name" name="list-name" tabindex="1">';
             		echo '<datalist id="list-names">';
 				}
+					$query = "SELECT `name` FROM `Lists` WHERE `owner` = '$ownerid'";
+	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+					while($row = mysql_fetch_assoc($dbRecord)){
+						echo "<option>" . $row['name'] . "</option>";
+					}
 				echo "</datalist>";
 			
 			?>
