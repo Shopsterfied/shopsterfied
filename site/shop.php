@@ -68,21 +68,30 @@
 				}
 			?>
             <label for="list-name">List Name</label>
-            <input list="list-names" id="list-name" name="list-name" tabindex="1">
-            <datalist id="list-names">
+            
                 
             <?php
 			
-				$query = "SELECT `name` FROM `Lists` WHERE `owner` = '$ownerid'";
-	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
-				while($row = mysql_fetch_assoc($dbRecord)){
-					echo "<option>" . $row['name'] . "</option>";
+				if (isset($_POST['buttonval'])){
+					
+            		echo '<input list="list-names" id="list-name" name="list-name" tabindex="1" value="' . $listname . '">';
+            		echo '<datalist id="list-names">';
+					$query = "SELECT `name` FROM `Lists` WHERE `owner` = '$ownerid'";
+	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+					while($row = mysql_fetch_assoc($dbRecord)){
+						echo "<option>" . $row['name'] . "</option>";
+					}
 				}
+				else {
+					echo '<input list="list-names" id="list-name" name="list-name" tabindex="1">';
+            		echo '<datalist id="list-names">';
+				}
+				echo "</datalist>";
 			
 			?>
                 
                 
-            </datalist>
+            
             <label for="item-name">Item Name</label>
             <input type="text" id="item-name" name="item-name" placeholder="Item Name" tabindex="2">
             <label for="priority">Priority</label>
@@ -94,6 +103,7 @@
             <label for="budget">Budget</label>
             <input type="text" id="budget" name="budget" placeholder="$100.00" tabindex="7">
             <input type="hidden" name="buttonval" id="buttonval">
+            <input type="hidden" name="listset" id="listset">
             <div class="grd-row">
                 <a id="additem" class="btn--blue grd-row-col-4-6" href="#" tabindex="6">Add Item</a>
                 <a class="btn--gray grd-row-col-4-6" href="#" tabindex="8">Start Shopping</a>
