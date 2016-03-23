@@ -18,7 +18,7 @@
 			$quantity = $_POST['quantity'];
 			$priority = $_POST['priority'];
 			$price = $_POST['price'];
-			$userid= "ewelz";
+			$userid= $_COOKIE['username'];
 			
 			
 			if ($btnmsg == 'addItem') {
@@ -56,6 +56,16 @@
     <div class="bg--off-white py2 px2 measure content">
         <div class"form">
         <form id="shopform" action="shop.php" method="post" role="form">
+       
+        	<?php
+			
+				if (isset($_COOKIE['username'])){
+					echo '<h4>Signed in as:  ' . $userid . '</h4>';
+				}
+				else {
+					echo '<h4>Not signed in.  <a href="index.php">Click here</a> to sign in.</h4>';
+				}
+			?>
             <label for="list-name">List Name</label>
             <input list="list-names" id="list-name" name="list-name" tabindex="1">
             <datalist id="list-names">
