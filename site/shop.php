@@ -10,6 +10,7 @@
     <script type="text/javascript" src="static/js/shop.js"></script>
     
     <?php
+		$userid = $_COOKIE['username'];
 		if (isset($_POST['buttonval'])){
 			
 			$btnmsg = $_POST['buttonval'];
@@ -18,7 +19,6 @@
 			$quantity = $_POST['quantity'];
 			$priority = $_POST['priority'];
 			$price = $_POST['price'];
-			$userid = $_COOKIE['username'];
 			
 			
 			if ($btnmsg == 'addItem') {
