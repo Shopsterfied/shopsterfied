@@ -20,7 +20,7 @@
 	  if ($passhash == $arrRecord[0]) {   
 	  
 	      /* Cookie expires when browser closes */
-		  setcookie('username', $_POST['user'], false, '/', 'ec2-52-87-179-178.compute-1.amazonaws.com');
+		  setcookie('username', $name, false, '/', 'ec2-52-87-179-178.compute-1.amazonaws.com');
 		  header("Location: http://ec2-52-87-179-178.compute-1.amazonaws.com/shop.php"); /* Redirect browser */
 		  /* Make sure that code below does not get executed when we redirect. */
 		  exit;
