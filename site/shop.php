@@ -104,12 +104,15 @@
             
         <?php
 		
-			echo '<tr><td><h3>list id = ' . $listid . '</td></tr></h3>';
+			
 		
 			if (isset($_POST['buttonval'])){
 			
 				$query = "SELECT * FROM `Items` WHERE `id` = '$listid'";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+				
+				$numrows = mysql_num_rows($dbRecord);
+				echo '<tr><td><h3>Number of rows is = ' . $numrows . '</td></tr></h3>';
 			
 				while($row = mysql_fetch_assoc($dbRecord)){
 					echo "<tr class='item'>";
