@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="static/css/site.css">
     <script type="text/javascript" src="static/js/jquery.js"></script>
     <script type="text/javascript" src="static/js/shop.js"></script>
+    
+    <?php
+	if (isset($_POST['item-name'])){
+		$btnmsg = $_POST['button'];
+		$itemname = $_POST['item-name'];
+		echo '<h3>' . $itemname . ' was the item name</h3>';
+	}
+	
+    ?>
+    
 </head>
 <body>
     <header class="txt--center">
@@ -70,13 +80,6 @@
     </div>
     </div>
     
-    <?php
-	if (isset($_POST['item-name'])){
-		$btnmsg = $_POST['button'];
-		$itemname = $_POST['item-name'];
-		echo '<h3>' . $itemname . ' was the item name</h3>';
-	}
-	
-    ?>
+    
 </body>
 </html>
