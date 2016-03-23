@@ -2,7 +2,7 @@
 
 $(document).ready(function(){
     $('#additem').click(function(){
-		$('buttonval').val('addItem');
+		$('#buttonval').val('addItem');
 		$('#shopform').submit();
 		
 	});
