@@ -46,7 +46,6 @@
 
 			}
 		}
-			echo '<p>userid: ' . $userid . '</p>';
 			
     ?>
     
