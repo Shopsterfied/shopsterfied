@@ -13,7 +13,7 @@
     </header>
     <div class="bg--off-white py2 px2 measure content">
         <div class"form">
-        <form action="#" role="form">
+        <form id="shopform" action="#" role="form">
             <label for="list-name">List Name</label>
             <input list="list-names" id="list-name" name="list-name" tabindex="1">
             <datalist id="list-names">
@@ -34,7 +34,7 @@
             <label for="budget">Budget</label>
             <input type="text" id="budget" name="budget" placeholder="$100.00" tabindex="7">
             <div class="grd-row">
-                <a class="btn--blue grd-row-col-4-6" href="#" tabindex="6">Add Item</a>
+                <a id="additem" class="btn--blue grd-row-col-4-6" href="#" tabindex="6">Add Item</a>
                 <a class="btn--gray grd-row-col-4-6" href="#" tabindex="8">Start Shopping</a>
             </div>
         </form>
@@ -67,5 +67,10 @@
         <a class="btn--blue grd-row-col-2-6" href="#">Save List</a>
     </div>
     </div>
+    <?php 
+	if (isset($_POST['button']){
+		$btnmsg = $_POST['button'];
+		echo '<h3 id="msg">' . $btnmsg . ' button was pressed</h3>';
+	}
 </body>
 </html>
