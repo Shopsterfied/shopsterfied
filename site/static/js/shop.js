@@ -5,9 +5,7 @@ $(document).ready(function(){
         var data = $('#shopform').serializeArray();
         data.push({name: 'button', value: 'additem'});
 
-        $.post("shop.php", data, function(data){
-			alert( "Data Loaded: " + data );	
-		});
+        $.post("shop.php", data, alert( "Data Loaded: " + data ));	
 		
 	});
 
