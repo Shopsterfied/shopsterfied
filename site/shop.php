@@ -104,6 +104,8 @@
             
         <?php
 		
+			echo '<tr><td><h3>list id = ' . $listid . '</td></tr></h3>';
+		
 			if (isset($_POST['buttonval'])){
 			
 				$query = "SELECT * FROM `Items` WHERE `id` = '$listid'";
