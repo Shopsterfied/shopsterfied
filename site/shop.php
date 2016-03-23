@@ -13,13 +13,39 @@
 		if (isset($_POST['buttonval'])){
 			
 			$btnmsg = $_POST['buttonval'];
+			$listname = $_POST['list-name'];
 			$itemname = $_POST['item-name'];
-			echo '<h3>' . $btnmsg . ' was pressed</h3>';
-			echo '<h3>' . $itemname . ' is the item name</h3>';
+			$quantity = $_POST['quantity'];
+			$priority = $_POST['priority'];
+			$price = $_POST['price'];
+			$userid= "ewelz";
 			
+			
+			if ($btnmsg == 'addItem') {
+	  
+	  			$dbConnected = mysql_connect("localhost", "shopsterfieduser", "hrnxUuxnT57RnZmZ")
+		  			or die('Failed to connect:  '.mysql_error());
+		  
+	  			mysql_select_db('shopsterfied', $dbConnected)
+		  			or die('Connected but could not find database: '.mysql_error());
+					
+				
+		  
+				$query = "SELECT `id` FROM `Users` WHERE `user_name` = '$userid'";
+	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+	  			$arrRecord = mysql_fetch_row($dbRecord);
+				$ownerid = $arrRecord[0];
+		  
+				$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
+	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+	  			$arrRecord = mysql_fetch_row($dbRecord);
+				$listid = $arrRecord[0];
+				
+				$query = "INSERT INTO Items(`list`, `item_name`, `cost`, `quantity`, `priority`) VALUES ('$listid','$itemname','$price','$quantity','$priority')";
+				mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+
+			}
 		}
-		
-	
     ?>
     
 </head>
