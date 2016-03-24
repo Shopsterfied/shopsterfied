@@ -34,14 +34,22 @@
 			$price = $_POST['price'];
 			
 			
-			if ($btnmsg == 'addItem') {
+			if ($btnmsg == 'addItem' && trim($listname) != "") {
 					 
 				$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+				if (mysql_num_rows($dbRecord) == 0){
+					$query = "INSERT INTO `Lists`(`name`, `owner`) VALUES ('$listname', '$ownerid')";
+	  				mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+					$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
+	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+				}
 	  			$arrRecord = mysql_fetch_row($dbRecord);
+				
+				
 				$listid = $arrRecord[0];
 				
-				if (trim($listname) != "" && trim($itemname) != "" && trim($quantity) != ""
+				if (trim($itemname) != "" && trim($quantity) != ""
 					&& trim($priority) != "" && trim($price) != ""){
 					$query = "INSERT INTO Items(`list`, `item_name`, `cost`, `quantity`, `priority`) 
 						VALUES ('$listid','$itemname','$price','$quantity','$priority')";
