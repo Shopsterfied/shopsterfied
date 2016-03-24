@@ -14,11 +14,5 @@ $(document).ready(function(){
 		$('#shopform').submit();
 		
 	});
-	
-	//$(document).on('input', '#list-names', function() {
-	$('#list-name').change(function(){
-		$('#buttonval').val('listset');
-		$('#shopform').submit();
-		});
 
 });
