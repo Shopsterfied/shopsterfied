@@ -34,8 +34,9 @@
 			$price = $_POST['price'];
 			
 			
-			if ($btnmsg == 'addItem') {
-					
+			if ($btnmsg == 'addItem' && isset($_POST['list-name']) && isset($_POST['item-name'])
+				&& isset($_POST['quantity']) && isset($_POST['priority']) && isset($_POST['price'])) {
+					 
 				$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 	  			$arrRecord = mysql_fetch_row($dbRecord);
