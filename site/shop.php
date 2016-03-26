@@ -38,6 +38,7 @@
 					 
 				$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+				
 				if (mysql_num_rows($dbRecord) == 0){
 					$query = "INSERT INTO `Lists`(`name`, `owner`) VALUES ('$listname', '$ownerid')";
 	  				mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
@@ -46,11 +47,19 @@
 				}
 	  			$arrRecord = mysql_fetch_row($dbRecord);
 				
-				
 				$listid = $arrRecord[0];
+				$itemInList = False;
+				$query = "SELECT `item_name` FROM `Items` WHERE `list` = '$listid'"
+				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+			
+				while($row = mysql_fetch_assoc($dbRecord)){
+					if ($row['item_name'] == $itemname){
+						$itemInList = True;
+					}
+				}
 				
 				if (trim($itemname) != "" && trim($quantity) != ""
-					&& trim($priority) != "" && trim($price) != ""){
+					&& trim($priority) != "" && trim($price) != "" !$itemInList){
 					$query = "INSERT INTO Items(`list`, `item_name`, `cost`, `quantity`, `priority`) 
 						VALUES ('$listid','$itemname','$price','$quantity','$priority')";
 					mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
@@ -87,12 +96,11 @@
 				}
 			?>
             <label for="list-name">Select or Create List</label>
-            
+            <input list="list-names" id="list-name" name="list-name" tabindex="1">
                 
             <?php
 			
-					
-            		echo '<input list="list-names" id="list-name" name="list-name" tabindex="1">';
+			
             		echo '<datalist id="list-names">';
 					
 					$query = "SELECT `name` FROM `Lists` WHERE `owner` = '$ownerid'";
@@ -124,6 +132,13 @@
             </div>
         </form>
         </div>
+        
+        <?php 
+		if ($itemInList){
+			echo "<p>Item " . $itemname . " is already in the list, not added.</p><br/>";
+		}
+		?>
+        
     <div class="list">
     <table>
         <thead>
