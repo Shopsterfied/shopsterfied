@@ -28,6 +28,11 @@
 			
 			$btnmsg = $_POST['buttonval'];
 			$listname = $_POST['list-name'];
+			
+			if (trim($listname) == "" && isset($_POST['currentlist'])){
+				$listname = $_POST['currentlist'];
+			}
+			
 			$itemname = $_POST['item-name'];
 			$quantity = $_POST['quantity'];
 			$priority = $_POST['priority'];
@@ -82,10 +87,12 @@
         	<?php
 			
 				if (isset($_COOKIE['username'])){
-					echo '<h4>Signed in as:  ' . $userid . '</h4>';
+					echo '<h4>Signed in as:  ' . $userid . '</h4>
+					';
 				}
 				else {
-					echo '<h4>Not signed in.  <a href="index.php">Click here</a> to sign in.</h4>';
+					echo '<h4>Not signed in.  <a href="index.php">Click here</a> to sign in.</h4>
+					';
 				}
 			
 				if (isset($_POST['list-name']) && $listname != ""){
