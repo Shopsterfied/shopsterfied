@@ -59,7 +59,7 @@
 				}
 				
 				if (trim($itemname) != "" && trim($quantity) != ""
-					&& trim($priority) != "" && trim($price) != "" !$itemInList){
+					&& trim($priority) != "" && trim($price) != "" && !$itemInList){
 					$query = "INSERT INTO Items(`list`, `item_name`, `cost`, `quantity`, `priority`) 
 						VALUES ('$listid','$itemname','$price','$quantity','$priority')";
 					mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
