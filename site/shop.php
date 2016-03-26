@@ -83,7 +83,7 @@
 					echo '<h4>Selected List:  ' . $listname . '</h4>';
 				}
 				else {
-					echo '<p>Please a list in the dropdown below or enter a new list name then click "add list"</p>';
+					echo '<p>Please select a list in the dropdown below or enter a new list name, then click "Add Item"</p>';
 				}
 			?>
             <label for="list-name">List Name</label>
@@ -91,15 +91,10 @@
                 
             <?php
 			
-				if (isset($_POST['buttonval'])){
 					
-            		echo '<input list="list-names" id="list-name" name="list-name" tabindex="1" value="' . $listname . '">';
+            		echo '<input list="list-names" id="list-name" name="list-name" tabindex="1">';
             		echo '<datalist id="list-names">';
-				}
-				else {
-					echo '<input list="list-names" id="list-name" name="list-name" tabindex="1">';
-            		echo '<datalist id="list-names">';
-				}
+					
 					$query = "SELECT `name` FROM `Lists` WHERE `owner` = '$ownerid'";
 	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 					while($row = mysql_fetch_assoc($dbRecord)){
