@@ -23,6 +23,8 @@
 	  	$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 	  	$arrRecord = mysql_fetch_row($dbRecord);
 		$ownerid = $arrRecord[0];
+		$listvalue = 0;
+		$budget = 0.0;
 			
 		if (isset($_POST['buttonval'])){
 			
@@ -41,7 +43,7 @@
 			
 			if ($btnmsg == 'addItem' && trim($listname) != "") {
 					 
-				$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
+				$query = "SELECT `id`, `bank` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 				
 				if (mysql_num_rows($dbRecord) == 0){
@@ -53,6 +55,7 @@
 	  			$arrRecord = mysql_fetch_row($dbRecord);
 				
 				$listid = $arrRecord[0];
+				$budget = $arrRecord[1];
 				$itemInList = False;
 				$query = "SELECT `item_name` FROM `Items` WHERE `list` = '$listid'";
 				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
@@ -153,6 +156,8 @@
 		if ($itemInList){
 			echo "<p>Item is already in the list, not added.</p><br/>";
 		}
+		
+		
 		?>
         
     <div class="list">
@@ -183,6 +188,7 @@
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 			
 				while($row = mysql_fetch_assoc($dbRecord)){
+					$listvalue = $listvalue + ($row['cost'] * $row['quantity']);
 					echo "<tr class='item'>";
 					echo "<td>" . $row['priority'] . "</td>";
 					echo "<td>" . $row['item_name'] . "</td>";
@@ -195,6 +201,16 @@
 		?>
         </tbody>
     </table>
+    <?php
+	
+		if ($listname != ""){
+			echo '<h5>Budget = ' . $budget . '</h5>
+			';
+			echo '<h5>Total Cost of items = ' . $listvalue . '</h5>
+			';
+		}
+	
+	?>
     </div>
     <div class="grd-row">
         <a class="btn--red grd-row-col-2-6" href="#">Clear List</a>
