@@ -89,15 +89,19 @@
 				}
 			
 				if (isset($_POST['list-name']) && $listname != ""){
-					echo '<h4>Selected List:  ' . $listname . '</h4>\n';
-					echo '<input type="hidden" id="currentlist" name="currentlist" value="' . $listname . '">\n';
+					echo '<h4>Selected List:  ' . $listname . '</h4>
+					';
+					echo '<input type="hidden" id="currentlist" name="currentlist" value="' . $listname . '">
+					';
 				}
 				else if (isset($_POST['$currentlist'])){
 					echo '<h4>Selected List:  ' . $currentlist . '</h4>\n';
-					echo '<input type="hidden" id="currentlist" name="currentlist" value="' . $currentlist . '">\n';
+					echo '<input type="hidden" id="currentlist" name="currentlist" value="' . $currentlist . '">
+					';
 				}
 				else {
-					echo '<p>Please select a list in the dropdown below or enter a new list name, then click "Add Item"</p>\n';
+					echo '<p>Please select a list in the dropdown below or enter a new list name, then click "Add Item"</p>
+					';
 				}
 			?>
             <label for="list-name">Select or Create List</label>
