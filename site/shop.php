@@ -78,6 +78,13 @@
 				else {
 					echo '<h4>Not signed in.  <a href="index.php">Click here</a> to sign in.</h4>';
 				}
+			
+				if (isset($_POST['list-name']) && $listname != ""){
+					echo '<h4>Selected List:  ' . $listname . '</h4>';
+				}
+				else {
+					echo '<p>Please a list in the dropdown below or enter a new list name then click "add list"</p>';
+				}
 			?>
             <label for="list-name">List Name</label>
             
@@ -143,8 +150,6 @@
         <tbody>
             
         <?php
-		
-			
 		
 			if (isset($_POST['buttonval'])){
 			
