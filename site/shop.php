@@ -135,7 +135,7 @@
         
         <?php 
 		if ($itemInList){
-			echo "<p>Item " . $itemname . " is already in the list, not added.</p><br/>";
+			echo "<p>Item is already in the list, not added.</p><br/>";
 		}
 		?>
         
