@@ -86,7 +86,7 @@
 					echo '<p>Please select a list in the dropdown below or enter a new list name, then click "Add Item"</p>';
 				}
 			?>
-            <label for="list-name">List Name</label>
+            <label for="list-name">Select or Create List</label>
             
                 
             <?php
