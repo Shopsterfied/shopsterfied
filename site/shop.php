@@ -92,7 +92,7 @@
 					echo '<h4>Selected List:  ' . $listname . '</h4>';
 					echo '<input type="hidden" id="currentlist" name="currentlist" value="' . $listname . '">';
 				}
-				else if (isset($_POST['$currentlist']){
+				else if (isset($_POST['$currentlist'])){
 					echo '<h4>Selected List:  ' . $currentlist . '</h4>';
 					echo '<input type="hidden" id="currentlist" name="currentlist" value="' . $currentlist . '">';
 				}
