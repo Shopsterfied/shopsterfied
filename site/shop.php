@@ -25,6 +25,7 @@
 		$ownerid = $arrRecord[0];
 		$listvalue = 0;
 		$budget = 0.0;
+		$enteredBudget = 0;
 			
 		if (isset($_POST['buttonval'])){
 			
@@ -55,7 +56,19 @@
 	  			$arrRecord = mysql_fetch_row($dbRecord);
 				
 				$listid = $arrRecord[0];
-				$budget = $arrRecord[1];
+				
+				
+				if (isset($_POST['budget']) && $_POST['budget'] != ""){
+					$enteredBudget = $_POST['budget'];
+					$query = "UPDATE `Lists` SET `bank`='$enteredBudget' WHERE `id`='listid'";
+	  				mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+					$budget = $enteredBudget;
+				}
+				else{
+					$budget = $arrRecord[1];
+				}
+				
+				
 				$itemInList = False;
 				$query = "SELECT `item_name` FROM `Items` WHERE `list` = '$listid'";
 				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
