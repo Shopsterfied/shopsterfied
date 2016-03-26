@@ -49,7 +49,7 @@
 				
 				$listid = $arrRecord[0];
 				$itemInList = False;
-				$query = "SELECT `item_name` FROM `Items` WHERE `list` = '$listid'"
+				$query = "SELECT `item_name` FROM `Items` WHERE `list` = '$listid'";
 				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 			
 				while($row = mysql_fetch_assoc($dbRecord)){
