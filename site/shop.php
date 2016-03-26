@@ -206,7 +206,7 @@
 		if ($listname != ""){
 			echo '<h5>Budget = ' . $budget . '</h5>
 			';
-			echo '<h5>Total Cost of items = ' . $listvalue . '</h5>
+			echo '<h5>Total Cost of items = ' . number_format($listvalue, 2) . '</h5>
 			';
 		}
 	
