@@ -14,5 +14,12 @@ $(document).ready(function(){
 		$('#shopform').submit();
 		
 	});
+	
+	
+    $('#shopnow').click(function(){
+		$('#buttonval').val('shopnow');
+		$('#shopform').submit();
+		
+	});
 
 });
