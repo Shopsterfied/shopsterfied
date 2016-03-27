@@ -85,9 +85,9 @@
 				//if budget input field has a value from user, 
 				//update database with budget value and set budget variable value
 				//else set budget variable with value from database
-				if (isset($_POST['budget']) && $_POST['budget'] != ""){
+				if (isset($_POST['budget']) && trim($_POST['budget']) != ""){
 					$enteredBudget = $_POST['budget'];
-					$query = "UPDATE `Lists` SET `bank`='$enteredBudget' WHERE `id`='listid'";
+					$query = "UPDATE `Lists` SET `bank`='$enteredBudget' WHERE `id`='$listid'";
 	  				mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 					$budget = $enteredBudget;
 				}
