@@ -133,16 +133,16 @@
 					
 					//Check if there is an existing purchase list
 					$query = "SELECT `id`, `bank` FROM `Lists` WHERE (`name` = '$purchaselist' AND `owner` = '$ownerid')";
-	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query 136 failed: ".mysql_error());
 				
 				
 					//if the purchase list does not exist in the database, create it and get the new id
 					//else clear the existing purchase list
 					if (mysql_num_rows($dbRecord) == 0){
 						$query = "INSERT INTO `Lists`(`name`, `owner`) VALUES ('$purchaselist', '$ownerid')";
-	  					mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+	  					mysql_query($query, $dbConnected) or die("Query 143 failed: ".mysql_error());
 						$query = "SELECT `id`, `bank` FROM `Lists` WHERE (`name` = '$purchaselist' AND `owner` = '$ownerid')";
-	  					$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+	  					$dbRecord = mysql_query($query, $dbConnected) or die("Query 145 failed: ".mysql_error());
 	  					$arrRecord = mysql_fetch_row($dbRecord);
 						$purchaseID = $arrRecord[0];
 					}
@@ -150,21 +150,21 @@
 	  					$arrRecord = mysql_fetch_row($dbRecord);
 						$purchaseID = $arrRecord[0];
 						$query = "DELETE FROM `Items` WHERE `list`='$purchaseID'";
-						mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+						mysql_query($query, $dbConnected) or die("Query 153 failed: ".mysql_error());
 					}
 					
 					//Check if there is an existing remaining items list
 					$query = "SELECT `id`, `bank` FROM `Lists` WHERE (`name` = '$remaininglist' AND `owner` = '$ownerid')";
-	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query 158 failed: ".mysql_error());
 				
 				
 					//if the remaining items list does not exist in the database, create it and get the new id
 					//else clear the existing remaining items list
 					if (mysql_num_rows($dbRecord) == 0){
 						$query = "INSERT INTO `Lists`(`name`, `owner`) VALUES ('$remaininglist', '$ownerid')";
-	  					mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+	  					mysql_query($query, $dbConnected) or die("Query 165 failed: ".mysql_error());
 						$query = "SELECT `id`, `bank` FROM `Lists` WHERE (`name` = '$remaininglist' AND `owner` = '$ownerid')";
-	  					$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+	  					$dbRecord = mysql_query($query, $dbConnected) or die("Query 167 failed: ".mysql_error());
 	  					$arrRecord = mysql_fetch_row($dbRecord);
 						$remainingID = $arrRecord[0];
 					}
@@ -172,7 +172,7 @@
 	  					$arrRecord = mysql_fetch_row($dbRecord);
 						$remainingID = $arrRecord[0];
 						$query = "DELETE FROM `Items` WHERE `list`='$remainingID'";
-						mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+						mysql_query($query, $dbConnected) or die("Query 175 failed: ".mysql_error());
 					}
 					
 					
