@@ -184,14 +184,16 @@
 					 
 					$query = "SELECT * FROM `Items` WHERE `list` = '$listid' ORDER BY `priority`";
 	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
-			
+					
+					$remainingBudget = $budget;
+					
 					while($row = mysql_fetch_assoc($dbRecord)){
 						$qtyPurchased = 0;
 						$quantity = $row['quantity'];
 						$price = $row['cost'];
 						$itemname = $row['item_name'];
 						$priority = $row['priority'];
-						$remainingBudget = $budget;
+						
 						for ($i = 0; $i < $quantity; $i++){
 							if ($price <= $remainingBudget){
 								$qtyPurchased++;
