@@ -10,54 +10,76 @@
     <script type="text/javascript" src="static/js/shop.js"></script>
     
     <?php
+		//If user is signed in, set username
 		$userid = $_COOKIE['username'];
 	  
+	  	//Connect to database
 	  	$dbConnected = mysql_connect("localhost", "shopsterfieduser", "hrnxUuxnT57RnZmZ")
 		  	or die('Failed to connect:  '.mysql_error());
-		  
 	  	mysql_select_db('shopsterfied', $dbConnected)
 		  	or die('Connected but could not find database: '.mysql_error());
 			
 			
+		//Get userid from database, assign to $ownerid	
 		$query = "SELECT `id` FROM `Users` WHERE `user_name` = '$userid'";
 	  	$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 	  	$arrRecord = mysql_fetch_row($dbRecord);
 		$ownerid = $arrRecord[0];
-		$listvalue = 0;
-		$budget = 0.0;
-		$enteredBudget = 0;
-			
+		
+		
+		//Initialize variables
+		$listvalue = 0;     //to represent total cost of items in the list
+		$budget = 0.0;      //Budget dollar value
+		$enteredBudget = 0; //to hold budget value entered by user in the input field
+		
+		
+		//this section is executed only if a button was pressed to submit the form
+		//not the first time the user navigates to this page	
 		if (isset($_POST['buttonval'])){
 			
-			$btnmsg = $_POST['buttonval'];
-			$listname = $_POST['list-name'];
+			$btnmsg = $_POST['buttonval'];    //which button was pressed to submit this form
+			$listname = $_POST['list-name'];  //get list name from form input field
 			
+			
+			/*
+			 *If list name was not selected by user but user
+			 *had previously selected a list prior to submitting the
+			 *form this time, then maintain the previous list selection
+			 */
 			if (trim($listname) == "" && isset($_POST['currentlist'])){
 				$listname = $_POST['currentlist'];
 			}
 			
+			
+			//set variables with values from input fields
 			$itemname = $_POST['item-name'];
 			$quantity = $_POST['quantity'];
 			$priority = $_POST['priority'];
 			$price = $_POST['price'];
 			
 			
-			if ($btnmsg == 'addItem' && trim($listname) != "") {
-					 
+			//if Add Item was clicked and list name is set, execute the following
+			if (($btnmsg == 'addItem' || $btnmsg == 'shopnow') && trim($listname) != "") {
+				
+				//Get list id and list budget from database
 				$query = "SELECT `id`, `bank` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 				
+				
+				//if the list does not exist in the database, create it and get the new id and budget
 				if (mysql_num_rows($dbRecord) == 0){
 					$query = "INSERT INTO `Lists`(`name`, `owner`) VALUES ('$listname', '$ownerid')";
 	  				mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
-					$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
+					$query = "SELECT `id`, `bank` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
 	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 				}
 	  			$arrRecord = mysql_fetch_row($dbRecord);
-				
 				$listid = $arrRecord[0];
 				
 				
+				//if budget input field has a value from user, 
+				//update database with budget value and set budget variable value
+				//else set budget variable with value from database
 				if (isset($_POST['budget']) && $_POST['budget'] != ""){
 					$enteredBudget = $_POST['budget'];
 					$query = "UPDATE `Lists` SET `bank`='$enteredBudget' WHERE `id`='listid'";
@@ -69,6 +91,7 @@
 				}
 				
 				
+				//Determine if item is already in the list
 				$itemInList = False;
 				$query = "SELECT `item_name` FROM `Items` WHERE `list` = '$listid'";
 				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
@@ -79,7 +102,10 @@
 					}
 				}
 				
-				if (trim($itemname) != "" && trim($quantity) != ""
+				
+				//If item input values all have values, and item is not already in list,
+				//and "Add Item" was selected, then add item to the database
+				if ($btnmsg == 'addItem' &&trim($itemname) != "" && trim($quantity) != ""
 					&& trim($priority) != "" && trim($price) != "" && !$itemInList){
 					$query = "INSERT INTO Items(`list`, `item_name`, `cost`, `quantity`, `priority`) 
 						VALUES ('$listid','$itemname','$price','$quantity','$priority')";
@@ -93,15 +119,18 @@
     
 </head>
 <body>
+
     <header class="txt--center">
         <h1><i class="fa fa-shopping-bag"></i> Shopsterfied<h1>
     </header>
+    
     <div class="bg--off-white py2 px2 measure content">
         <div class"form">
         <form id="shopform" action="shop.php" method="post" role="form">
        
         	<?php
 			
+				//if user is signed in, indicate username, else promt user to sign in
 				if (isset($_COOKIE['username'])){
 					echo '<h4>Signed in as:  ' . $userid . '</h4>
 					';
@@ -111,6 +140,10 @@
 					';
 				}
 			
+				//If list name has been input, indicate list name of the list
+				//else if a list was selected previous to the current submission,
+				//indicate the the name of that list
+				//else prompt the user to select/create a list
 				if (isset($_POST['list-name']) && $listname != ""){
 					echo '<h4>Selected List:  ' . $listname . '</h4>
 					';
@@ -127,12 +160,15 @@
 					';
 				}
 			?>
+            
+            
             <label for="list-name">Select or Create List</label>
             <input list="list-names" id="list-name" name="list-name" tabindex="1">
                 
             <?php
 			
-			
+					//Populate list name input dropdown with list names associated with 
+					//this owner in the database
             		echo '<datalist id="list-names">';
 					
 					$query = "SELECT `name` FROM `Lists` WHERE `owner` = '$ownerid'";
@@ -160,12 +196,14 @@
             <input type="hidden" name="listset" id="listset">
             <div class="grd-row">
                 <a id="additem" class="btn--blue grd-row-col-4-6" href="#" tabindex="6">Add Item</a>
-                <a class="btn--gray grd-row-col-4-6" href="#" tabindex="8">Start Shopping</a>
+                <a id="shopnow" class="btn--gray grd-row-col-4-6" href="#" tabindex="8">Start Shopping</a>
             </div>
         </form>
         </div>
         
         <?php 
+		
+		//if the item being added is already in the list, indicate this to the user
 		if ($itemInList){
 			echo "<p>Item is already in the list, not added.</p><br/>";
 		}
@@ -195,7 +233,10 @@
             
         <?php
 		
-			if (isset($_POST['buttonval'])){
+			//if this is not the initial navigation to this form
+			//get items from the list in the database and display them in the table
+			//and calculate the total cost of items in the list
+			if (isset($_POST['buttonval']) && $listname != ""){
 			
 				$query = "SELECT * FROM `Items` WHERE `list` = '$listid' ORDER BY `priority`";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
@@ -216,8 +257,9 @@
     </table>
     <?php
 	
+		//if listname is not empty, indicate list budget and total cost of items in list
 		if ($listname != ""){
-			echo '<h5>Budget = $' . $budget . '</h5>
+			echo '<h5>Budget = $' . number_format($budget, 2) . '</h5>
 			';
 			echo '<h5>Total Cost of items = $' . number_format($listvalue, 2) . '</h5>
 			';
