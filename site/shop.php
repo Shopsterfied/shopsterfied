@@ -38,7 +38,12 @@
 		if (isset($_POST['buttonval'])){
 			
 			$btnmsg = $_POST['buttonval'];    //which button was pressed to submit this form
-			$listname = $_POST['list-name'];  //get list name from form input field
+			if ($btnmsg != "shopnow"){
+				$listname = $_POST['list-name'];  //get list name from form input field
+			}
+			else{
+				$listname = "";
+			}
 			
 			
 			/*
@@ -58,7 +63,7 @@
 			$price = $_POST['price'];
 			
 			
-			//if Add Item was clicked and list name is set, execute the following
+			//if Add Item or Start Shopping was clicked and list name is set, execute the following
 			if (($btnmsg == 'addItem' || $btnmsg == 'shopnow') && trim($listname) != "") {
 				
 				//Get list id and list budget from database
@@ -105,13 +110,119 @@
 				
 				//If item input values all have values, and item is not already in list,
 				//and "Add Item" was selected, then add item to the database
-				if ($btnmsg == 'addItem' &&trim($itemname) != "" && trim($quantity) != ""
+				if ($btnmsg == 'addItem' && trim($itemname) != "" && trim($quantity) != ""
 					&& trim($priority) != "" && trim($price) != "" && !$itemInList){
 					$query = "INSERT INTO Items(`list`, `item_name`, `cost`, `quantity`, `priority`) 
 						VALUES ('$listid','$itemname','$price','$quantity','$priority')";
 					mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 				}
-
+				
+				
+				/*
+				 *if "Start Shopping" was selected and the list exists,
+				 *calculate purchased Items list, remaining items list
+				 *save them both and display purchased items.
+				 */
+				 
+				if($btnmsg == 'shopnow' && trim($listname) != ""){
+					
+					$purchaselist = $listname . " (items purchased)";
+					$remaininglist = $listname . " (items remaining)";
+					$purchaseID = 0;
+					$remainingID = 0;
+					
+					//Check if there is an existing purchase list
+					$query = "SELECT `id`, `bank` FROM `Lists` WHERE (`name` = '$purchaselist' AND `owner` = '$ownerid')";
+	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+				
+				
+					//if the purchase list does not exist in the database, create it and get the new id
+					//else clear the existing purchase list
+					if (mysql_num_rows($dbRecord) == 0){
+						$query = "INSERT INTO `Lists`(`name`, `owner`) VALUES ('$purchaselist', '$ownerid')";
+	  					mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+						$query = "SELECT `id`, `bank` FROM `Lists` WHERE (`name` = '$purchaselist' AND `owner` = '$ownerid')";
+	  					$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+	  					$arrRecord = mysql_fetch_row($dbRecord);
+						$purchaseID = $arrRecord[0];
+					}
+					else {
+	  					$arrRecord = mysql_fetch_row($dbRecord);
+						$purchaseID = $arrRecord[0];
+						$query = "DELETE FROM `Items` WHERE `list`='$purchaseID'";
+						mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+					}
+					
+					//Check if there is an existing remaining items list
+					$query = "SELECT `id`, `bank` FROM `Lists` WHERE (`name` = '$remaininglist' AND `owner` = '$ownerid')";
+	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+				
+				
+					//if the remaining items list does not exist in the database, create it and get the new id
+					//else clear the existing remaining items list
+					if (mysql_num_rows($dbRecord) == 0){
+						$query = "INSERT INTO `Lists`(`name`, `owner`) VALUES ('$remaininglist', '$ownerid')";
+	  					mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+						$query = "SELECT `id`, `bank` FROM `Lists` WHERE (`name` = '$remaininglist' AND `owner` = '$ownerid')";
+	  					$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+	  					$arrRecord = mysql_fetch_row($dbRecord);
+						$remainingID = $arrRecord[0];
+					}
+					else {
+	  					$arrRecord = mysql_fetch_row($dbRecord);
+						$remainingID = $arrRecord[0];
+						$query = "DELETE FROM `Items` WHERE `list`='$remainingID'";
+						mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+					}
+					
+					
+					/*
+					 *Iterate through items in the original list in priority order
+					 *Adding items that fit in budget to purchase list
+					 *Items that do not fit in budget are added to the remaining list
+					 */
+					 
+					$query = "SELECT * FROM `Items` WHERE `list` = '$listid' ORDER BY `priority`";
+	  				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+			
+					while($row = mysql_fetch_assoc($dbRecord)){
+						$qtyPurchased = 0;
+						$quantity = $row['quantity'];
+						$price = $row['cost'];
+						$itemname = $row['item_name'];
+						$priority = $row['priority'];
+						$remainingBudget = $budget;
+						for ($i = 0; $i < $quantity; $i++){
+							if ($price <= $remainingBudget){
+								$qtyPurchased++;
+								$remainingBudget = $remainingBudget - $price;
+							}
+						}
+						
+						
+						
+						if ($qtyPurchased > 0){
+							$query = "INSERT INTO `Items`(`list`, `item_name`, `cost`, `quantity`, `priority`) VALUES ('$purchaseID','$itemname','$price','$qtyPurchased','$priority')";
+							mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+						}
+						
+						$numRemaining = $quantity - $qtyPurchased;
+						
+						if (($numRemaining) > 0){
+							$query = "INSERT INTO `Items`(`list`, `item_name`, `cost`, `quantity`, `priority`) VALUES ($remainingID,'$itemname','$price','$numRemaining','$priority')";
+							mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+						}
+					}
+					
+					
+					//update remaining items list with remaining budget
+					//set display list to purchase list
+					$query = "UPDATE `Lists` SET `bank`='$remainingBudget' WHERE `id`='$remainingID'"
+					mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+					$listname = $purchaselist;
+					$listid = $purchaseID;
+					
+				}				
 			}
 		}
 			
