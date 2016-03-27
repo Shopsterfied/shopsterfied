@@ -217,7 +217,7 @@
 					
 					//update remaining items list with remaining budget
 					//set display list to purchase list
-					$query = "UPDATE `Lists` SET `bank`='$remainingBudget' WHERE `id`='$remainingID'"
+					$query = "UPDATE `Lists` SET `bank`='$remainingBudget' WHERE `id`='$remainingID'";
 					mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 					$listname = $purchaselist;
 					$listid = $purchaseID;
