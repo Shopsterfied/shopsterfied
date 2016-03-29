@@ -98,23 +98,44 @@
 				
 				//Determine if item is already in the list
 				$itemInList = False;
-				$query = "SELECT `item_name` FROM `Items` WHERE `list` = '$listid'";
+				$itemID = 0;
+				$query = "SELECT `item_name`, `id` FROM `Items` WHERE `list` = '$listid'";
 				$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 			
 				while($row = mysql_fetch_assoc($dbRecord)){
 					if ($row['item_name'] == $itemname){
 						$itemInList = True;
+						$itemID = $row['id'];
 					}
 				}
 				
 				
-				//If item input values all have values, and item is not already in list,
+				//If item input fields all have values, and item is not already in list,
 				//and "Add Item" was selected, then add item to the database
 				if ($btnmsg == 'addItem' && trim($itemname) != "" && trim($quantity) != ""
 					&& trim($priority) != "" && trim($price) != "" && !$itemInList){
 					$query = "INSERT INTO Items(`list`, `item_name`, `cost`, `quantity`, `priority`) 
 						VALUES ('$listid','$itemname','$price','$quantity','$priority')";
 					mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+				}
+				
+				//else if item input fields all have values, and item IS already in the list,
+				//and "Add Item" was selected, input quantity > 0, then update item in the database
+				else if ($btnmsg == 'addItem' && trim($itemname) != "" && trim($quantity) != ""
+					&& trim($priority) != "" && trim($price) != "" && $itemInList && ($quantity > 0)){
+					
+					$query = "UPDATE `Items` SET `cost`='$price',`quantity`='$quantity',`priority`='$priority' WHERE `id`='$itemID'";
+					mysql_query($query, $dbConnected) or die("Query line 128 failed: ".mysql_error());
+					
+				}
+				
+				//else if "add item" was selected, and item is already in the list
+				//and quantity == 0, delete item from the list
+				else if ($btnmsg == 'addItem' && trim($itemname) != "" && $itemInList && ($quantity == 0)){
+					
+					$query = "DELETE FROM `Items` WHERE `id`='$itemID'";
+					mysql_query($query, $dbConnected) or die("Query line 137 failed: ".mysql_error());
+					
 				}
 				
 				
