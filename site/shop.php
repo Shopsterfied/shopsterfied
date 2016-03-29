@@ -335,16 +335,6 @@
         </form>
         </div>
         
-        <?php 
-		
-		//if the item being added is already in the list, indicate this to the user
-		if ($itemInList){
-			echo "<p>Item is already in the list, not added.</p><br/>";
-		}
-		
-		
-		?>
-        
     <div class="list">
     <table>
         <thead>
