@@ -21,5 +21,10 @@ $(document).ready(function(){
 		$('#shopform').submit();
 		
 	});
+	
+	$('#clear').click(function(){
+		if (confirm("You have chosen to clear and delete this list.  Are you sure?")){
+		}
+	});
 
 });
