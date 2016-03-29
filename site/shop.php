@@ -392,7 +392,7 @@
 	?>
     </div>
     <div class="grd-row">
-        <a class="btn--red grd-row-col-2-6" href="#">Clear List</a>
+        <a id="clear" class="btn--red grd-row-col-2-6" href="#">Clear List</a>
         <a class="btn--blue grd-row-col-2-6" href="#">Save List</a>
     </div>
     </div>
