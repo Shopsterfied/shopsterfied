@@ -1,7 +1,7 @@
 // JavaScript Document
 
-var listNamePattern = /^([\\w\\(\\)]{1,100})?$/;
-var itemNamePattern = /^(\w{1,80})?$/;
+var listNamePattern = /^.{1,100})?$/;
+var itemNamePattern = /^(.{1,80})?$/;
 var msg = "";
 
 
