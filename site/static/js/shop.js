@@ -24,6 +24,8 @@ $(document).ready(function(){
 	
 	$('#clear').click(function(){
 		if (confirm("You have chosen to clear and delete this list.  Are you sure?")){
+			$('#buttonval').val('clear');
+			$('#shopform').submit();
 		}
 	});
 
