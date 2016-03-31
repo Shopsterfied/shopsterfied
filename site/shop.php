@@ -38,6 +38,7 @@
 		if (isset($_POST['buttonval'])){
 			
 			$btnmsg = $_POST['buttonval'];    //which button was pressed to submit this form
+			
 			if ($btnmsg != "shopnow"){
 				$listname = $_POST['list-name'];  //get list name from form input field
 			}
@@ -53,6 +54,24 @@
 			 */
 			if (trim($listname) == "" && isset($_POST['currentlist'])){
 				$listname = $_POST['currentlist'];
+			}
+			
+			//If Form was posted by clicking the clear button, get the list id,
+			//delete all items from the list and then delete the list
+			if ($btnmsg == "clear"){
+				$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
+	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
+				$arrRecord = mysql_fetch_assoc($dbRecord);
+				$listid = $arrRecord['id'];
+				$query = "DELETE FROM `Items` WHERE `list` = '$listid'";
+				mysql_query($query, $dbConnected) or die("Query line 67 failed: ".mysql_error());
+				$query = "DELETE FROM `Lists` WHERE `id` = '$listid'";
+				mysql_query($query, $dbConnected) or die("Query line 69 failed: ".mysql_error());
+				
+				
+				header("Location: http://ec2-52-87-179-178.compute-1.amazonaws.com//shop.php"); /* Redirect browser */
+		 		 /* Make sure that code below does not get executed when we redirect. */
+		  		exit;
 			}
 			
 			
