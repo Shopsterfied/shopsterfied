@@ -276,6 +276,7 @@
 
     <header class="txt--center">
         <h1><i class="fa fa-shopping-bag"></i> Shopsterfied<h1>
+        <h4 hidden id="input-msg" class="txt--center ">Message text</h4>
     </header>
     
     <div class="bg--off-white py2 px2 measure content">
