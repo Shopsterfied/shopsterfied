@@ -1,6 +1,6 @@
 // JavaScript Document
 
-var listNamePattern = /^.{1,100})?$/;
+var listNamePattern = /^(.{1,100})?$/;
 var itemNamePattern = /^(.{1,80})?$/;
 var msg = "";
 
