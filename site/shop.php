@@ -310,7 +310,7 @@
 					';
 				}
 				else {
-					echo '<p>Please select a list in the dropdown below or enter a new list name, then click "Add Item"</p>
+					echo '<p>Please select a list in the dropdown below or enter a new list name, then click "Add Item/Update List"</p>
 					';
 				}
 			?>
@@ -349,7 +349,7 @@
             <input type="hidden" name="buttonval" id="buttonval">
             <input type="hidden" name="listset" id="listset">
             <div class="grd-row">
-                <a id="additem" class="btn--blue grd-row-col-4-6" href="#" tabindex="6">Update List</a>
+                <a id="additem" class="btn--blue grd-row-col-4-6" href="#" tabindex="6">Add Item/Update List</a>
                 <a id="shopnow" class="btn--gray grd-row-col-4-6" href="#" tabindex="8">Start Shopping</a>
             </div>
         </form>
