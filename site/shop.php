@@ -59,6 +59,7 @@
 			//If Form was posted by clicking the clear button, get the list id,
 			//delete all items from the list and then delete the list
 			if ($btnmsg == "clear"){
+				echo "<h4>got the clear message</h4>";
 				$query = "SELECT `id` FROM `Lists` WHERE (`name` = '$listname' AND `owner` = '$ownerid')";
 	  			$dbRecord = mysql_query($query, $dbConnected) or die("Query failed: ".mysql_error());
 				$arrRecord = mysql_fetch_assoc($dbRecord);
